@@ -15,10 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from rest_framework import routers
+from restapi import views
 
-from places.views import hello
+router = routers.DefaultRouter()
+router.register(r'places', views.PlaceViewSet)
+
 
 urlpatterns = [
-    url(r'^hello/', hello),
+    url(r'^', include(router.urls)),
     url(r'^admin/', include(admin.site.urls)),
 ]
