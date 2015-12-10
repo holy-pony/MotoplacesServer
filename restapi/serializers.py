@@ -3,6 +3,11 @@ from rest_framework import serializers
 
 
 class PlaceSerializer(serializers.ModelSerializer):
+    place_type = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='type'
+     )
 
     class Meta:
         model = Place
@@ -12,4 +17,4 @@ class PlaceSerializer(serializers.ModelSerializer):
 class PlaceTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlaceType
-        fields = ('id', 'place_type', 'place_type_name')
+        fields = ('id', 'type', 'name')

@@ -6,7 +6,7 @@ class PlaceType(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.type
+        return self.name
 
 
 class Shop(models.Model):
@@ -23,10 +23,10 @@ class Place(models.Model):
     place_lat = models.FloatField()
     place_lng = models.FloatField()
     pub_date = models.DateTimeField('date published')
-    place_type = models.ManyToManyField(PlaceType)
+    place_type = models.ManyToManyField(PlaceType, related_name="places_type_rel")
     place_discription = models.CharField(max_length=200, blank=True, null=True)
     place_address = models.CharField(max_length=200, blank=True, null=True)
-    place_shop = models.ForeignKey(Shop , blank=True, null=True)
+    place_shop = models.ForeignKey(Shop, blank=True, null=True)
 
     def __str__(self):
         return self.place_title
